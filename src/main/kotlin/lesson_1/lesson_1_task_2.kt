@@ -1,6 +1,13 @@
 package org.example.lesson_1
 
 fun main(){
-    println("Тестовое решение к уроку 1 задаче 2")
-    println("Некие исправления")
+    val numberOfOrders = 75
+
+    val gratitude = "We LOVE you for buying from our store, but we HATE you for buying so little!"
+    println(numberOfOrders)
+    println(gratitude)
+    var numberOfSmurfs = 2000
+//    println(numberOfSmurfs)
+    numberOfSmurfs--
+    println(numberOfSmurfs)
 }
