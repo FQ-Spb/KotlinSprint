@@ -5,7 +5,6 @@ fun main(){
     val ratingTom=4f
     val ratingBill=3f
     val ratingAlex=5f
-
     val averageScore = (ratingPit+ratingTom+ratingBill+ratingAlex)/4
 
     println(averageScore)
