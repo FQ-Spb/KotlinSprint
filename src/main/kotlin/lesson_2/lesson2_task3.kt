@@ -10,5 +10,5 @@ val arrivalHour = arrTimeInMin/60
     val arrivalMin = arrTimeInMin%60
 
     println(String.format("%02d",arrivalHour)+':'+String.format("%02d",arrivalMin))
-
+//Если забуду, напомните, пожалуйста, задать вопрос почему у меня не вышло решить эту задачу альтернативным способом.
 }
