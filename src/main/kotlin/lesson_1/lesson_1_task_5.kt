@@ -3,8 +3,8 @@ package org.example.lesson_1
 
 fun main() {
     val totalTime = 6480
-    val hour = totalTime / (SECONDS_IN_HOUR)
-    val minutes = totalTime % SECONDS_IN_HOUR / SECONDS_IN_MINUTE
+      val hour = totalTime / (SECONDS_IN_HOUR)
+         val minutes = totalTime % SECONDS_IN_HOUR / SECONDS_IN_MINUTE
     val seconds = totalTime - hour * SECONDS_IN_HOUR - minutes * SECONDS_IN_MINUTE
 
     println(
