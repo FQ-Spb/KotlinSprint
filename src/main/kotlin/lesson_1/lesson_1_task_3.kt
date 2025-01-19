@@ -2,13 +2,13 @@ package org.example.lesson_1
 
 fun main() {
     val year = "1961"
-    var hour = "09".toInt()
-    var minute = "07".toInt()
+    var hour = "09"
+    var minute = "07"
 
     println(year)
-    println(String.format("%02d", hour))
-    println(String.format("%02d", minute))
-    hour += 1
-    minute += 48
+    println(hour)
+    println(minute)
+    hour = "10"
+    minute = "55"
     print("$hour:$minute")
 }
