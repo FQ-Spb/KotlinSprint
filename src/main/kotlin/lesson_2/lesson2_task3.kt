@@ -13,4 +13,4 @@ fun main() {
 
 }
 
-val MINUTES_IN_HOUR = 60
+const val MINUTES_IN_HOUR = 60
