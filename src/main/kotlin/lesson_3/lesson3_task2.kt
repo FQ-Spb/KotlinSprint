@@ -2,11 +2,13 @@ package org.example.lesson_3
 
 fun main() {
 
-    var personName = "Андреева Татьяна Сергеевна"
+    val personName = "Татьяна"
+    var personSurname = "Андреева"
+    val nameOfFather = "Сергеевна"
     var personAge = 20
 
-    println("$personName, $personAge")
+    println("$personSurname $personName $nameOfFather, $personAge")
     personAge += 2
-    personName = "Сидорова Татьяна Сергеевна"
-    println("$personName, $personAge")
+    personSurname = "Сидорова"
+    println("$personSurname $personName $nameOfFather, $personAge")
 }
