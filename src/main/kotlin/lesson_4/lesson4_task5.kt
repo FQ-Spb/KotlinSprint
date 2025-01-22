@@ -2,17 +2,19 @@ package org.example.lesson_4
 
 fun main() {
 
+    val undamagedShipCrew = (55..70)
 
     print("Корабль не имеет повреждений(true или false): ")
-    val noDamage = readlnOrNull().toBoolean()
+    val isShipUndamaged = readln().toBoolean()
     print("Количество человек в экипаже: ")
-    val crewSize = readlnOrNull()!!.toInt()
+    val crewSize = readln().toInt()
     print("Количество ящиков провизии на борту: ")
-    val amountOfFood = readlnOrNull()!!.toInt()
+    val amountOfFood = readln().toInt()
     print("Благоприятна ли погода(true или false): ")
-    val weather = readlnOrNull().toBoolean()
-    val shipCanSail = (noDamage && (crewSize in 55..70) && (amountOfFood > 50) && weather || !weather) ||
-            (!noDamage && (crewSize == 70) && (amountOfFood >= 50) && weather)
+    val isWeatherGood = readln().toBoolean()
+    val shipCanSail = (isShipUndamaged && (crewSize in undamagedShipCrew) &&
+            (amountOfFood > MIN_AMOUNT_OF_FOOD) && (isWeatherGood || !isWeatherGood)) ||
+            (!isShipUndamaged && (crewSize == DAMAGE_SHIP_CREW) && (amountOfFood >= MIN_AMOUNT_OF_FOOD) && isWeatherGood)
 
     if (shipCanSail) {
         println("Корабль может плыть!")
@@ -20,3 +22,6 @@ fun main() {
         println("Корабль плыть не может!")
     }
 }
+
+const val DAMAGE_SHIP_CREW = 70
+const val MIN_AMOUNT_OF_FOOD = 50
