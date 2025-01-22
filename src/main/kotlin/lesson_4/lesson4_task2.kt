@@ -2,9 +2,6 @@ package org.example.lesson_4
 
 fun main() {
 
-    val minWeight = 35
-    val maxWeight = 100
-    val maxVolue = 100
     val weightBox1 = 20
     val volueBox1 = 80
     val weightBox2 = 50
@@ -12,13 +9,17 @@ fun main() {
 
     println(
         "Груз весом $weightBox1 и объёмом $volueBox1 соответствует категории \"Average\":" +
-                " ${(weightBox1 > minWeight) && (weightBox1 <= maxWeight) && (volueBox1 < maxVolue)} "
+                " ${(weightBox1 > MIN_WEIGHT) && (weightBox1 <= MAX_WEIGHT) && (volueBox1 < MAX_VOLUE)} "
     )
 
     println(
         "Груз весом $weightBox2 и объёмом $volueBox2 соответствует категории \"Average\":" +
-                " ${(weightBox2 > minWeight) && (weightBox2 <= maxWeight) && (volueBox2 < maxVolue)} "
+                " ${(weightBox2 > MIN_WEIGHT) && (weightBox2 <= MAX_WEIGHT) && (volueBox2 < MAX_VOLUE)} "
     )
 
 }
+
+const val MIN_WEIGHT = 35
+const val MAX_WEIGHT = 100
+const val MAX_VOLUE = 100
 
