@@ -10,13 +10,14 @@ fun main() {
     val crewSize = readln().toInt()
     print("Количество ящиков провизии на борту: ")
     val amountOfFood = readln().toInt()
+
     print("Благоприятна ли погода(true или false): ")
     val isWeatherGood = readln().toBoolean()
-    val shipCanSail = (isShipUndamaged && (crewSize in undamagedShipCrew) &&
-            (amountOfFood > MIN_AMOUNT_OF_FOOD) && (isWeatherGood || !isWeatherGood)) ||
+    val isShipCanSail = (isShipUndamaged && (crewSize in undamagedShipCrew) &&
+            (amountOfFood > MIN_AMOUNT_OF_FOOD)) ||
             (!isShipUndamaged && (crewSize == DAMAGE_SHIP_CREW) && (amountOfFood >= MIN_AMOUNT_OF_FOOD) && isWeatherGood)
 
-    if (shipCanSail) {
+    if (isShipCanSail) {
         println("Корабль может плыть!")
     } else {
         println("Корабль плыть не может!")
