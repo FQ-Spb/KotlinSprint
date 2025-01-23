@@ -1,6 +1,7 @@
 package org.example.lesson_5
 
 fun main() {
+
     println(
         """
                                                     Внимание, пассажир.
@@ -14,20 +15,23 @@ fun main() {
     print("Введите имя пользователя: ")
     val enteredUserName = readln().trim()
     when (enteredUserName) {
-       USER_NAME -> print("Введите пароль: ")
+        USER_NAME -> print("Введите пароль: ")
         else -> {
             println("Такой пользователь не зарегистрирован.Вы можете зарегистрироваться и вернуться для авторизации.")
             return
         }
     }
     val enteredPassword = readln().trim()
-    if(enteredPassword== PASSWORD_OF_ZAPHOD) println("""
+    if (enteredPassword == PASSWORD_OF_ZAPHOD) println(
+        """
         [вздыхает...] Ваши данные проверены, и о, чудо, они верны... 
         Пользователь "Zaphod", вам разрешено входить на борт корабля "Heart of Gold". 
         Хотя мне всё равно... Ну вперед, войдите... Если вам так уж надо, в конце концов... [меланхолический вздох...]
          Надеюсь, вам понравится пребывание здесь больше, чем мне.
-    """.trimIndent())
+    """.trimIndent()
+    )
     else println("Пароль не верный!")
 }
+
 const val USER_NAME = "Zaphod"
 const val PASSWORD_OF_ZAPHOD = "PanGalactic"
