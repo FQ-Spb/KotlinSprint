@@ -2,14 +2,14 @@ package org.example.lesson_4
 
 fun main() {
 
-    val sunnyToday = true
-    val openRoofToday = true
+    val isSunnyToday = true
+    val isRoofOpenToday = true
     val airHumidityToday = 20
     val seasonToday = "Winter"
 
     println(
         "Благоприятные ли условия сейчас для роста бобовых? ${
-            (sunnyToday == IS_SUNNY) && (openRoofToday == IS_AWNING_OPEN) &&
+            (isSunnyToday == IS_SUNNY) && (isRoofOpenToday == IS_AWNING_OPEN) &&
                     (airHumidityToday == AIR_HUMIDITY) && (seasonToday != SEASON)
         }"
     )
