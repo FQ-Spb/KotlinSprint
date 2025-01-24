@@ -8,5 +8,5 @@ fun main() {
     Thread.sleep(numberOfEnteredSec * 1000)
     println("Прошло $numberOfEnteredSec секунд.")
 
-    while (numberOfEnteredSec >= 0) Thread.sleep(1000)
+    readln()
 }
