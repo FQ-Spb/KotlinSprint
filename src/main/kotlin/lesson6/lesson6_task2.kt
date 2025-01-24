@@ -7,6 +7,4 @@ fun main() {
 
     Thread.sleep(numberOfEnteredSec * 1000)
     println("Прошло $numberOfEnteredSec секунд.")
-
-    readln()
 }
