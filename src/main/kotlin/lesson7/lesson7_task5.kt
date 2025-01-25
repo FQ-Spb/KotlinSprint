@@ -2,14 +2,20 @@ package org.example.lesson7
 
 fun main() {
 
-    val setSymbols = listOf((1..9).random(), ('a'..'z').random(), ('A'..'Z').random())
-    var password = ""
+    val listOfSymbols = listOf((1..9).random(), ('a'..'z').random(), ('A'..'Z').random())
+    var password = charArrayOf()
+    var passwordLength: Int
+    val setOfSymbols = (1..9) + ('a'..'z') + ('A'..'Z')
 
-    print("Введите требуемое количество символов в пароле: ")
-    val passwordLength = readln().toInt()
+    do {
+        print("Введите требуемое количество символов в пароле, но не меньше 6: ")
+        passwordLength = readln().toInt()
+    } while (passwordLength < 6)
 
-    while (password.length < passwordLength) {
-        password += setSymbols[(0..2).random()]
-    }
-    println(password)
+    for (i in listOfSymbols) password.add(i)
+
+    while (password.size < passwordLength) password.add(setOfSymbols.random())
+
+
+
 }
