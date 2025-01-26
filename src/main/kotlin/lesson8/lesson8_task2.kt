@@ -8,11 +8,10 @@ fun main() {
     val lookingForIngredient = readln()
 
     for (component in compositionOfOlivie) {
-        if (component != lookingForIngredient) continue
-        else {
-            println("Ингредиент $lookingForIngredient в рецепте есть.")
+        if (component == lookingForIngredient) {
+            println("Ингредиент $lookingForIngredient в рецепте есть")
             return
         }
     }
-    println("Ингредиента $lookingForIngredient в рецепте нет.")
+    println("Такого ингредиента в рецепте нет")
 }
