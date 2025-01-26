@@ -7,8 +7,8 @@ fun main() {
     println("Какой игредиент вы ищете?")
     val lookingForIngredient = readln()
 
-    val result = when (compositionOfOlivie.find { it == lookingForIngredient }) {
-        lookingForIngredient -> "Ингредиент в рецепте есть."
+    val result = when (lookingForIngredient in compositionOfOlivie) {
+        true -> "Ингредиент в рецепте есть."
         else -> "Такого ингредиента нет."
     }
     println(result)
