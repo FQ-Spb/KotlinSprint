@@ -11,7 +11,7 @@ fun main() {
     print("Введите стоимость литра топлива:")
 
     val fuelCost = readln().toFloat()
-    val fuelForTrip = pathLength * fuelConsumption / CONSTANT_DIVISOR
+    val fuelForTrip = pathLength * fuelConsumption / CONSTANT_DIV
     val tripCost = fuelForTrip * fuelCost
 
     println(
@@ -23,4 +23,4 @@ fun main() {
     )
 }
 
-const val CONSTANT_DIVISOR = 100
+const val CONSTANT_DIV = 100
