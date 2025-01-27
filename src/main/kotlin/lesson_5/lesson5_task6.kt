@@ -8,7 +8,7 @@ fun main() {
     val userWeight = readln().toDouble()
     println("Введите свой рост в сантиметрах:")
     val userHeight = readln().toFloat()
-    val bodyMassInd = userWeight / (userHeight / CONSTANT_DIV).pow(2)
+    val bodyMassInd = userWeight / (userHeight / CONSTANT_DIVISOR).pow(2)
 
     val result = when {
         bodyMassInd < LIMIT_OF_NORMAL_BODY_MASS -> "Недостаточная масса тела"
@@ -23,7 +23,7 @@ fun main() {
     println("Ваш Индекс Массы Тела равен ${String.format("%.2f", bodyMassInd)} - $result")
 }
 
-const val CONSTANT_DIV = 100
+const val CONSTANT_DIVISOR = 100
 const val LIMIT_OF_NORMAL_BODY_MASS = 18.5
 const val LIMIT_OF_OVERWEIGHT = 25
 const val LIMIT_OF_OBESITY = 30
