@@ -2,15 +2,18 @@ package org.example.lesson9
 
 fun main() {
 
-    val friedEggsIngredients = mutableMapOf(
-        "Яйцо (шт)" to 2,
-        "Молоко (мл)" to 50,
-        "Масло (гр)" to 15
-    )
+    val volueOfIngForOne = listOf(2, 50, 15)
 
     print("Сколько порций вы хотите приготовить?: ")
     val numberOfPortions = readln().toInt()
+    val volueForSeveralPortions = volueOfIngForOne.map { volue -> volue * numberOfPortions }
 
-    println("Для приготовдения $numberOfPortions порций вам потребуется: ")
-    friedEggsIngredients.forEach { (key, value) -> println("$key - ${value * numberOfPortions}") }
+    print("На $numberOfPortions порций вам понадобится: ")
+    volueForSeveralPortions.forEach {
+        when (volueForSeveralPortions.indexOf(it)) {
+            0 -> print("Яиц - $it шт ")
+            1 -> print("Молока - $it мл ")
+            2 -> print("Масла - $it гр ")
+        }
+    }
 }
