@@ -7,12 +7,12 @@ fun main() {
     var throwOfUser: Int
     var whoWin: String
     var result = 0
-    var answer:String
+    var answer: String
     do {
         throwOfComp = getNumber()
         throwOfUser = getNumber()
 
-        round(throwOfComp, throwOfUser)
+        playRound(throwOfComp, throwOfUser)
 
         whoWin = when {
             throwOfComp > throwOfUser -> "Выиграл Компьютер."
@@ -26,10 +26,10 @@ fun main() {
         answer = readln()
     } while (answer.equals(AGREE, ignoreCase = true))
 
-println("Хорошо. Вы выиграли $result партий.")
+    println("Хорошо. Вы выиграли $result партий.")
 }
 
-fun round(throwOfComp: Int, throwOfUser: Int) {
+fun playRound(throwOfComp: Int, throwOfUser: Int) {
     print("Ход компьютера: ")
     println(throwOfComp)
     print("Ваш ход, нажмите\"ENTER\":")
