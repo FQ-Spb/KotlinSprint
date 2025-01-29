@@ -3,32 +3,38 @@ package org.example.lesson10
 import org.example.lesson9.AGREE
 
 fun main() {
-
+    var throwOfComp: Int
+    var throwOfUser: Int
+    var whoWin: String
+    var result = 0
+    var answer:String
     do {
-        round()
+        throwOfComp = getNumber()
+        throwOfUser = getNumber()
+
+        round(throwOfComp, throwOfUser)
+
+        whoWin = when {
+            throwOfComp > throwOfUser -> "Выиграл Компьютер."
+            throwOfComp < throwOfUser -> "Вы выиграли!"
+            else -> "Ничья."
+        }
+        if (whoWin == "Вы выиграли!") result++
+
+        println(whoWin)
         println("Хотите сыграть ещё? Введите Да/Нет")
-        val answer = readln()
-    } while (answer.equals(AGREE))
+        answer = readln()
+    } while (answer.equals(AGREE, ignoreCase = true))
+
+println("Хорошо. Вы выиграли $result партий.")
 }
 
-fun round() {
-    val throwOfComp = getNumber()
-    val throwOfUser = getNumber()
+fun round(throwOfComp: Int, throwOfUser: Int) {
     print("Ход компьютера: ")
     println(throwOfComp)
     print("Ваш ход, нажмите\"ENTER\":")
     readln()
     println(throwOfUser)
-    println(whoWin(throwOfComp, throwOfUser))
 }
 
 fun getNumber() = (1..6).random()
-
-fun whoWin(compNumber: Int, userNumber: Int): String {
-    val result = when {
-        compNumber > userNumber -> "Выиграл Компьютер."
-        compNumber < userNumber -> "Вы выиграли!"
-        else -> "Ничья."
-    }
-    return result
-}
