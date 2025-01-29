@@ -4,18 +4,18 @@ fun main() {
 
     print("Введите требуемое количество символов в пароле: ")
 
-    println(passGen(readln().toInt()))
+    println(generatePassword(readln().toInt()))
 }
 
-fun passGen(length: Int): String {
-    val specialSymbols = arrayOf("!", "\"", "#", "$", "%", ".", "&", "'", "(", ")", "*", "+", ",", "-", "/", "\b")
-    val numbers = (0..9)
-    var password = ""
+fun generatePassword(length: Int): String {
+    val specialSymbols = arrayOf('!', '"', '#', '$', '%', '.', '&', '\'', '(', ')', '*', '+', ',', '-', '/', ' ')
+    val numbers = ('0'..'9')
+    val password = CharArray(length)
 
-    do {
-        password += numbers.random()
-        password += specialSymbols.random()
-    } while (password.length < length)
-
-    return password
+    for (i in password.indices) {
+        if ((i + 1) % 2 == 0) password[i] = specialSymbols.random()
+        else password[i] = numbers.random()
+    }
+    val result = String(password)
+    return result
 }
