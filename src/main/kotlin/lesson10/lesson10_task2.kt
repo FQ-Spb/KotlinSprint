@@ -13,6 +13,8 @@ fun main() {
 }
 
 fun checkLength(login: String, password: String): Boolean {
-    if (login.length < 4 || password.length < 4) return false
+    val minPassLength = 4
+    val minLogLength = 4
+    if (login.length < minLogLength || password.length < minPassLength) return false
     else return true
 }
