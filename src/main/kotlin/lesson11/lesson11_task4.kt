@@ -48,10 +48,13 @@ class Recipe(
         cookingProcess = newText
     }
     fun addIngredient(newIngredient:String){
-
+ingredients
     }
 }
 
-class Ingredients() {
+class Ingredients(
+    val nameAndVolue:MutableMap<String,Int> = mutableMapOf(),
+    val numberOfServings:Int
+) {
 
 }
