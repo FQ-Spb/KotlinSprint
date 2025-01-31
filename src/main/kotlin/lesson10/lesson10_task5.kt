@@ -11,9 +11,14 @@ fun main() {
     print("Введите свой пароль: ")
     val inputPassword = readln()
     when (authorize(inputLogin, inputPassword)) {
-        null -> println("Вы ввели неверный логин или пароль.")
-        else -> println(getShopBasket(authorize(inputLogin, inputPassword)).joinToString(",\n"))
+        null -> {
+            println("Ошибка авторизации.")
+            return
+        }
+
+        else -> println("Успешная авторизация")
     }
+    println(verifyToken(generateToken()))
 
 }
 
@@ -29,20 +34,17 @@ fun generateToken(): String {
     return stringToken
 }
 
-fun authorize(login: String, password: String): String? {
+fun authorize(login: String, password: String): Int? {
 
     if (login != CORRECT_LOGIN || password != CORRECT_PASSWORD) return null
 
-    return generateToken()
+    return 0
 }
 
-fun getShopBasket(token: String?): List<String?> {
-    val error = listOf(
-        "Токен: invalidToken\n" +
-                "Ошибка доступа к корзине."
-    )
-    val shoppingBasket = mutableListOf("Ёршик для пупка", "Тапочки для таракана", "Картонный сейф", "Бумажный аквариум")
-
-    return if (token?.length == TOKEN_LENGTH) shoppingBasket
-    else error
+fun verifyToken(token: String): String {
+    return if (token.length == TOKEN_LENGTH) getShopBasket().joinToString(", ")
+    else "Invalid token"
 }
+
+fun getShopBasket(): List<String> =
+    mutableListOf("Ёршик для пупка", "Тапочки для таракана", "Картонный сейф", "Бумажный аквариум")
