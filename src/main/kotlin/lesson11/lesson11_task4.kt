@@ -47,8 +47,8 @@ class Recipe(
     fun changeCookingProcess(newText:String){
         cookingProcess = newText
     }
-    fun addIngredient(newIngredient:String){
-ingredients
+    fun addIngredient(nameOfIngredient:String,volueOfIngredient:Int){
+val newIng= ingredients.forEach {  }
     }
 }
 
