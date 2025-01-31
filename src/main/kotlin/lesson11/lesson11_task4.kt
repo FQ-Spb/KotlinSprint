@@ -26,35 +26,53 @@ class Recipe(
     private var description: String,
     val caloricContent: Int,
     val ingredients: MutableList<Ingredients> = mutableListOf(),
-    var cookingProcess:String,
+    var cookingProcess: String,
     var isInFavorite: Boolean = false,
 ) {
     fun changeTitle(newTitleText: String) {
         title = newTitleText
     }
-    fun changeCover(newImageUrl:String){
-        coverURL= newImageUrl
+
+    fun changeCover(newImageUrl: String) {
+        coverURL = newImageUrl
     }
-    fun changeDescription(newDescText:String){
-        description=newDescText
+
+    fun changeDescription(newDescText: String) {
+        description = newDescText
     }
-    fun addInFavorite(){
-        isInFavorite=true
+
+    fun addInFavorite() {
+        isInFavorite = true
     }
-    fun removeFromFavorite(){
-        isInFavorite=false
+
+    fun removeFromFavorite() {
+        isInFavorite = false
     }
-    fun changeCookingProcess(newText:String){
+
+    fun changeCookingProcess(newText: String) {
         cookingProcess = newText
     }
-    fun addIngredient(nameOfIngredient:String,volueOfIngredient:Int){
-val newIng= ingredients.forEach {  }
+
+    fun addIngredient(nameOfIngredient: String, volueOfIngredient: Int) {
+        if (ingredients.isNotEmpty()) {
+            ingredients[0].nameAndVolue[nameOfIngredient] = volueOfIngredient
+        } else {
+            val newIngredient = Ingredients(mutableMapOf(nameOfIngredient to volueOfIngredient))
+            ingredients.add(newIngredient)
+        }
     }
 }
 
 class Ingredients(
-    val nameAndVolue:MutableMap<String,Int> = mutableMapOf(),
-    val numberOfServings:Int
+    val nameAndVolue: MutableMap<String, Int> = mutableMapOf(),
+    var numberOfServings: Int = 1,
 ) {
+    fun changeNumberOfServings(number: Int) {
+        numberOfServings = number
+        nameAndVolue.forEach { it.value * number }
+    }
 
+    fun printListOfIngredients() {
+    nameAndVolue.forEach{it-> println("${it.key} - ${it.value}") }
+    }
 }
