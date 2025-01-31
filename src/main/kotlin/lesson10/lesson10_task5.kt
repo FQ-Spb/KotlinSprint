@@ -17,17 +17,23 @@ fun main() {
 
 }
 
-fun authorize(login: String, password: String): String? {
+fun generateToken(): String {
     val stringToken: String
     val setOfSymbols = ('1'..'9') + ('a'..'z') + ('A'..'Z')
     val token = Array<Char?>(32) { null }
-    if (login != CORRECT_LOGIN || password != CORRECT_PASSWORD) return null
     for (element in token.indices) {
         token[element] = setOfSymbols.random()
     }
     token.shuffle()
     stringToken = token.joinToString("")
     return stringToken
+}
+
+fun authorize(login: String, password: String): String? {
+
+    if (login != CORRECT_LOGIN || password != CORRECT_PASSWORD) return null
+
+    return generateToken()
 }
 
 fun getShopBasket(token: String?): List<String?> {
