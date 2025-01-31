@@ -4,38 +4,36 @@ const val STATUS_TALKING = "разговаривает"
 const val STATUS_MIC_OFF = "микрофон выключен"
 const val STATUS_USER_MUTED = "пользователь заглушен"
 
+class ParticipantData(
+    val nickname: String,
+    val avatarUrl: String,
+    var status: String = STATUS_USER_MUTED,
+)
+
 class Room(
-    val coverUrl: String = "https://i.pinimg.com/originals/7e/1b/fd/7e1bfd1191112533fe9872ef47398823.jpg",
+    val coverUrl: String,
     val title: String,
-    val memberAndStatus: MutableMap<String, String>,
+    val participant: MutableList<ParticipantData> = mutableListOf(),
 ) {
 
-    fun addMember(newMember: String) {
-        memberAndStatus[newMember] = STATUS_USER_MUTED
+    fun addMember(newMember: ParticipantData) {
+        participant.add(newMember)
     }
 
     fun changeStatus(member: String, status: String) {
-        memberAndStatus[member] = status
+        val newStatusOfUser = participant.find { it.nickname == member }
+        newStatusOfUser?.status = status
     }
 }
 
 fun main() {
-    val room1 = Room(
-        title = "Болталка", memberAndStatus = mutableMapOf(
-            "URL of Image1" to STATUS_TALKING,
-            "URL of Image2" to STATUS_MIC_OFF,
-            "URL of Image3" to STATUS_USER_MUTED,
-        )
-    )
-    //Проверка корректности работы методов
-    println(room1.memberAndStatus)
+
+    val room1 = Room("https://i.pinimg.com/originals/7e/1b/fd/7e1bfd1191112533fe9872ef47398823.jpg", title = "Болталка")
+    val user1 = ParticipantData("Pinky", "URL of Pinky avatar")
+
+    room1.addMember(user1)
+    room1.participant.forEach { it -> (println("${it.nickname} - ${it.status}")) }
     println()
-
-    room1.changeStatus("URL of Image1", STATUS_USER_MUTED)
-    println(room1.memberAndStatus)
-    println()
-
-    room1.addMember(readln())
-    println(room1.memberAndStatus)
-
+    room1.changeStatus("Pinky", STATUS_TALKING)
+    room1.participant.forEach { it -> (println("${it.nickname} - ${it.status}")) }
 }
