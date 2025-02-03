@@ -9,8 +9,8 @@ fun main() {
     var result = 0
     var answer: String
     do {
-        throwOfComp = getNumber()
-        throwOfUser = getNumber()
+        throwOfComp = getNumber1()
+        throwOfUser = getNumber1()
 
         playRound(throwOfComp, throwOfUser)
 
@@ -37,4 +37,4 @@ fun playRound(throwOfComp: Int, throwOfUser: Int) {
     println(throwOfUser)
 }
 
-fun getNumber() = (1..6).random()
+fun getNumber1() = (1..6).random()
