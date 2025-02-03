@@ -25,7 +25,7 @@ fun main(){
     weatherDuringMonth.map{it-> nighttimeTemp.add(it.nigthtimeTemp)}
 
     val rainyDays = mutableListOf<Boolean>()
-    weatherDuringMonth.map{it-> rainyDays.add(it.isAnyPrecipitation==true)}
+    weatherDuringMonth.map{it-> if (it.isAnyPrecipitation) rainyDays.add(it.isAnyPrecipitation)}
 
     println(rainyDays)
 }
