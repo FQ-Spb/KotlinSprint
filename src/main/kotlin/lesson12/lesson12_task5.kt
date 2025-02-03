@@ -18,7 +18,14 @@ fun main(){
         val weatherDuringDay = Weather5((20..30).random(),(15..25).random(),Random.nextBoolean())
         weatherDuringMonth.add(weatherDuringDay)
     }
-   val rainyDays = mutableListOf<Weather5>()
-    
+   val daytimeTemp = mutableListOf<Int>()
+    weatherDuringMonth.map{it->daytimeTemp.add(it.daytimeTemp)}
 
+    val nighttimeTemp = mutableListOf<Int>()
+    weatherDuringMonth.map{it-> nighttimeTemp.add(it.nigthtimeTemp)}
+
+    val rainyDays = mutableListOf<Boolean>()
+    weatherDuringMonth.map{it-> rainyDays.add(it.isAnyPrecipitation==true)}
+
+    println(rainyDays)
 }
