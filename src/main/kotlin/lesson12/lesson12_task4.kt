@@ -2,7 +2,7 @@ package org.example.lesson12
 
 const val ZERO_KELVIN = -273
 
-class Weather2(_daytimeTempK: Int, _nigthtimeTempK: Int, _isAnyPrecipitation: Boolean) {
+class Weather3(_daytimeTempK: Int, _nigthtimeTempK: Int, _isAnyPrecipitation: Boolean) {
 
     var daytimeTemp = _daytimeTempK + ZERO_KELVIN
     var nighttimeTemp = _nigthtimeTempK + ZERO_KELVIN
@@ -17,5 +17,5 @@ class Weather2(_daytimeTempK: Int, _nigthtimeTempK: Int, _isAnyPrecipitation: Bo
 }
 
 fun main() {
-    val friday = Weather2(300, 289, false)
+    val friday = Weather3(300, 289, false)
 }
