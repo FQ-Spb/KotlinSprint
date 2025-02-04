@@ -16,5 +16,9 @@ fun main() {
         UserData2("Alex", 684468486, "GazProm")
     )
 
-    listOfUsers.forEach { if (it.company != null) println(it.company) }
+    listOfUsers.forEach {
+        it.company?.let { company ->
+            println(company)
+        }
+    }
 }
