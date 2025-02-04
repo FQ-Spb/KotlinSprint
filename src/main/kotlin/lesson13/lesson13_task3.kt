@@ -16,9 +16,6 @@ fun main() {
         UserData2("Alex", 684468486, "GazProm")
     )
 
-    listOfUsers.forEach {
-        it.company?.let { company ->
-            println(company)
-        }
-    }
+    listOfUsers.mapNotNull { it.company }
+        .forEach { if (it != "null") println(it) }
 }
