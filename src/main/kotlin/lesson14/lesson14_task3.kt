@@ -45,14 +45,21 @@ class Rectangle(
 fun main() {
 
     val listOfFigures = mutableListOf<Figure>(
-        Circle("White", 15.0),
-        Circle("Black", 20.3),
-        Rectangle("White", 21.5, 11.8),
-        Rectangle("Black", 18.6, 9.0)
+        Circle(WHITE_COLOR, 15.0),
+        Circle(BLACK_COLOR, 20.3),
+        Rectangle(WHITE_COLOR, 21.5, 11.8),
+        Rectangle(BLACK_COLOR, 18.6, 9.0)
     )
-    var sumPerimetersOfBlackFig = 0.0
-    var sumAreasOfWhiteFig = 0.0
+    val listOfWhiteFigures = listOfFigures.filter { it.color == WHITE_COLOR }
+    val listOfBlackFigures = listOfFigures.filter { it.color == BLACK_COLOR }
 
-    listOfFigures.forEach { if (it.color == "black") sumPerimetersOfBlackFig += it.calculatePerimeter() }
-    listOfFigures.forEach { if (it.color == "White") sumAreasOfWhiteFig += it.calculateArea() }
+    val sumPerimetersOfBlackFig = listOfBlackFigures.sumOf { it.calculatePerimeter() }
+    val sumAreasOfWhiteFig = listOfWhiteFigures.sumOf { it.calculateArea() }
+
+    println(String.format("%.2f", sumPerimetersOfBlackFig))
+    println(String.format("%.2f", sumAreasOfWhiteFig))
+
 }
+
+const val WHITE_COLOR = "White"
+const val BLACK_COLOR = "Black"
