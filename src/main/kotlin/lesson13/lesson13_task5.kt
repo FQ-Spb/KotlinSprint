@@ -15,7 +15,7 @@ fun main() {
         print("Введите телефон: ")
         val phoneNumber = readln().toLong()
     } catch (e: Exception) {
-        println("Произошла ошибка преобразования в число $e. ")
+        println("Произошла ошибка преобразования в число ${e::class.simpleName} ")
     }
 
     print("Введите компанию: ")
