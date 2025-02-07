@@ -4,8 +4,13 @@ abstract class Users(
     val id: Int,
     val nickname: String,
 ) {
-    abstract fun readPage(): String
-    abstract fun writeMessage(): String
+    fun readPage(): String {
+        return "Cтраница доступна для чтения."
+    }
+
+    fun writeMessage(): String {
+        return "Оставьте свой коментарий."
+    }
 }
 
 
@@ -13,15 +18,7 @@ class SimpleUser(
     id: Int,
     nickname: String,
     val isRegistered: Boolean,
-) : Users(id, nickname) {
-    override fun readPage(): String {
-        return "Страница открыта для просмотра."
-    }
-
-    override fun writeMessage(): String {
-        return "Оставьте ваш коментарий."
-    }
-}
+) : Users(id, nickname)
 
 class Admin(
     id: Int,
@@ -29,21 +26,12 @@ class Admin(
     val rank: String,
     val isRegistered: Boolean = true,
 ) : Users(id, nickname) {
-
-    override fun readPage(): String {
-        return "Страница доступна для чтения."
-    }
-
-    override fun writeMessage(): String {
-        return "Оставьте ваш коментарий."
-    }
-
     fun deleteUser(): String {
         return "Пользователь удалён из списка участников."
     }
 
     fun deleteMessage(): String {
-        return "Вы удали ссобщение пользователя."
+        return "Вы удали сообщение пользователя."
     }
 }
 
