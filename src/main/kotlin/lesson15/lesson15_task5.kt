@@ -6,105 +6,105 @@ interface Movement {
 }
 
 interface TransportOfPassengers {
-    fun prepareForTransport()
-    fun disembarkPassengers()
+    fun putInCar()
+    fun getOutOfCar()
 }
 
 interface CargoHandling {
-    fun unfoldRamp()
-    fun lowerRamp()
-    fun raiseRamp()
-    fun openCargoBay()
-    fun closeCargoBay()
-    fun download()
+    fun load()
     fun unload()
 }
 
 abstract class Vehicle(
-    var maxPassengerCapacity: Int,
-    var maxCargoCapacity: Int,
+    val maxPassengerCapacity: Int,
+    val maxCargoCapacity: Int,
+    var numberOfHumanInside: Int,
+    var massOfCargoInside: Int,
 )
 
 class FreightTransport(
+
     maxPassengerCapacity: Int = 1,
     maxCargoCapacity: Int = 2000,
-    var numberOfHumanInCar: Int,
-    val currentPassengerCapacity: Int = maxPassengerCapacity - numberOfHumanInCar,
-    var massOfCargoInside: Int,
-    var currentCargoCapacity: Int = maxCargoCapacity - massOfCargoInside,
+    numberOfHumanInside: Int,
+    massOfCargoInside: Int,
+) : Vehicle(maxPassengerCapacity, maxCargoCapacity, numberOfHumanInside, massOfCargoInside), TransportOfPassengers,
+    CargoHandling, Movement {
 
-    ) : Vehicle(maxPassengerCapacity, maxCargoCapacity), TransportOfPassengers, CargoHandling, Movement {
-    override fun startMoving() = println("Радио \"Шансон\"включено. Шторы открыты.Автопилот активирован.")
-    override fun stopMoving() = println("\"Шансон\" выключен. Шторы задёрнуты.Автопилот деактивирован")
-    override fun unfoldRamp() = println("Аппарель активирована.")
-    override fun lowerRamp() = println("Аппарель опущена.")
-    override fun raiseRamp() = println("Аппарель поднята.")
-    override fun openCargoBay() = println("Грузовой отсек открыт.")
-    override fun closeCargoBay() = println("Грузовой отсек закрыт.")
-    override fun prepareForTransport() = println("Молитва прочитана.Тапочки надеты")
-    override fun disembarkPassengers() {
-        println("Уличная обувь возвращена")
-        numberOfHumanInCar = 0
+    override fun startMoving() = println("Движение началось.")
+    override fun stopMoving() = println("Движение остановлено")
+    override fun putInCar() {
+        if ((maxPassengerCapacity - numberOfHumanInside) > 0) {
+            println("В кабину село ${maxPassengerCapacity - numberOfHumanInside} человек.")
+            numberOfHumanInside = maxPassengerCapacity
+        }
     }
 
-    override fun download() {
-        println("Груз помещен в грузовой отсек.")
-        massOfCargoInside = maxCargoCapacity
+    override fun getOutOfCar() {
+        if (numberOfHumanInside >0) {
+            println("Пассажир покинул кабину")
+            numberOfHumanInside=0
+        }
+    }
+
+    override fun load() {
+        println("${maxCargoCapacity - massOfCargoInside} кг груза помещено в грузовой отсек.")
     }
 
     override fun unload() {
         println("Грузовой отсек освобождён.")
-        currentCargoCapacity = maxCargoCapacity
+        massOfCargoInside = 0
     }
 }
 
 class LightTransport(
     maxPassengerCapacity: Int = 3,
     maxCargoCapacity: Int = 0,
-    var numberOfHumanInCar: Int,
-    val currentCapacity: Int = maxPassengerCapacity - numberOfHumanInCar,
-) : Vehicle(maxPassengerCapacity, maxCargoCapacity), TransportOfPassengers, Movement {
+    numberOfHumanInside: Int,
+    massOfCargoInside: Int = 0,
+) : Vehicle(maxPassengerCapacity, maxCargoCapacity, numberOfHumanInside, massOfCargoInside), TransportOfPassengers,
+    Movement {
+
     override fun startMoving() = println("Двигатель запущен.Режим \"Drive\" активирован.")
     override fun stopMoving() = println("Двигатель заглушен. Режим \"Parking\"активирован.")
-    override fun prepareForTransport() {
-        println("Двери заблокированы. Ремни безопасности пристегнуты. Принято $currentCapacity людей.")
-        numberOfHumanInCar = maxPassengerCapacity
+    override fun putInCar() {
+        println("Двери заблокированы. Ремни безопасности пристегнуты. Принято ${maxPassengerCapacity - numberOfHumanInside} людей.")
     }
 
-    override fun disembarkPassengers() {
+    override fun getOutOfCar() {
         println("Ремни отстёгнуты.Двери разблокированы. Всё пассажиры высажены.")
-        numberOfHumanInCar = 0
+        numberOfHumanInside = 0
     }
 }
 
+
 fun main() {
 
-    var counterOfHumans = 6
-    var counterOfCargo = 2000
-    val volkswagen = LightTransport(numberOfHumanInCar = 1)
-    val freightLiner = FreightTransport(numberOfHumanInCar = 0, massOfCargoInside = 0)
-    do {
-        if (volkswagen.currentCapacity < volkswagen.maxPassengerCapacity) {
-            volkswagen.prepareForTransport()
-            counterOfHumans -= volkswagen.currentCapacity
-            volkswagen.startMoving()
-            volkswagen.stopMoving()
-            volkswagen.disembarkPassengers()
+    val vehicle1 = FreightTransport(numberOfHumanInside = 1, massOfCargoInside = 1200)
+    val vehicle2 = LightTransport(numberOfHumanInside = 2)
+    var currentPassengerCapacity: Int
+    var currentCargoCapacity: Int
+    var numberOfHumansForTransport = 6
+    var volueOfCargoForTransport = 2000
 
-        }
-        if (counterOfCargo == 0) continue
-        else {
-            if (freightLiner.currentCargoCapacity <= freightLiner.maxCargoCapacity) {
-                freightLiner.unfoldRamp()
-                freightLiner.openCargoBay()
-                freightLiner.raiseRamp()
-                freightLiner.download()
-                counterOfCargo -= freightLiner.currentCargoCapacity
-                freightLiner.startMoving()
-                freightLiner.stopMoving()
-                freightLiner.unload()
-            }
-        }
-    } while (counterOfCargo > 0 || counterOfHumans > 0)
+    do {
+        currentCargoCapacity = vehicle1.maxCargoCapacity - vehicle1.massOfCargoInside
+        currentPassengerCapacity = (vehicle1.maxPassengerCapacity - vehicle1.numberOfHumanInside) +
+                (vehicle2.maxPassengerCapacity - vehicle2.numberOfHumanInside)
+        vehicle1.load()
+        vehicle1.putInCar()
+        numberOfHumansForTransport -= currentPassengerCapacity
+        volueOfCargoForTransport -= currentCargoCapacity
+        vehicle1.startMoving()
+        vehicle1.stopMoving()
+        vehicle1.getOutOfCar()
+        vehicle1.unload()
+        vehicle2.putInCar()
+        numberOfHumansForTransport -= currentPassengerCapacity
+        vehicle2.startMoving()
+        vehicle2.stopMoving()
+        vehicle2.getOutOfCar()
+
+    } while (numberOfHumansForTransport > 0 || volueOfCargoForTransport > 0)
 
 }
