@@ -1,8 +1,14 @@
 package org.example.lesson17
 
 class Quiz(
-    var question: String,
-    val answer: String,
+   private val _question: String,
+   private var _answer: String,
 ) {
-
+    val question: String
+        get() = _question
+    var answer: String
+        get() = _answer
+        set(value) {
+            _answer = value
+        }
 }
