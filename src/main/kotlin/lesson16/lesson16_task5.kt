@@ -8,8 +8,10 @@ class Character(
     private var impactForce: Int = 10,
 ) {
     fun takeDamage() {
-        health--
-        println("Нанесён урон. Текущее здоровье - $health")
+        if (health > 1) {
+            health--
+            println("Нанесён урон. Текущее здоровье - $health")
+        }else killCharacter()
     }
 
     fun cure() {
