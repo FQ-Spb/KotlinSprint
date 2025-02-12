@@ -6,6 +6,7 @@ class Quiz(
 ) {
     val question: String
         get() = _question
+
     var answer: String
         get() = _answer
         set(value) {
