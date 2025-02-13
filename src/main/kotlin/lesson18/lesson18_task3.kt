@@ -1,30 +1,26 @@
 package org.example.lesson18
 
-open class Animal {
-    open fun eat(): String = ""
-    open fun getNickname() = ""
+abstract class Animal(
+    private val name: String,
+    private val favoriteFood: String,
+) {
+    fun eat(): String = "$name -> eats $favoriteFood "
 }
 
 class Fox(
-    private val name: String,
-) : Animal() {
-    override fun eat() = "Eats berries. "
-    override fun getNickname() = name
-}
+    name: String,
+    favoriteFood: String = "berries",
+) : Animal(name, favoriteFood)
 
 class Dog(
-    private val name: String,
-) : Animal() {
-    override fun eat(): String = "Eats bones."
-    override fun getNickname() = name
-}
+    name: String,
+    favoriteFood: String = "bones",
+) : Animal(name, favoriteFood)
 
 class Cat(
-    private val name: String,
-) : Animal() {
-    override fun eat() = "Eats fish."
-    override fun getNickname() = name
-}
+    name: String,
+    favoriteFood: String = "fish",
+) : Animal(name, favoriteFood)
 
 fun main() {
 
@@ -33,5 +29,5 @@ fun main() {
     val cat: Animal = Cat("Basilio")
     val listOfAnimals = arrayOf<Animal>(dog, cat, fox)
 
-    listOfAnimals.forEach { println("${it.getNickname()} -> ${it.eat()}") }
+    listOfAnimals.forEach { println(it.eat()) }
 }
