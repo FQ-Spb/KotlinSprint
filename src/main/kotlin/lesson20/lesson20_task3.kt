@@ -20,4 +20,5 @@ fun main() {
     println()
     key(gamer1)
     door(gamer1)
+
 }
