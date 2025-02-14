@@ -3,14 +3,8 @@ package org.example.lesson20
 
 fun main() {
 
-    val lambda = { it: String -> println("$it item clicked") }
-    val listOfLambdas: MutableList<(String) -> Unit> = mutableListOf()
     val listOfStrings = mutableListOf("News", "Messages", "Friends", "Notes")
+    val listOfLambdas = listOfStrings.map { { println("$it item clicked") } }
 
-    listOfStrings.map { listOfLambdas.add(lambda) }
-
-    for (i in listOfLambdas.indices) {
-        if (i % 2 != 0)
-            listOfLambdas[i](listOfStrings[i])
-    }
+    listOfLambdas.forEach { if (listOfLambdas.indexOf(it) % 2 != 0) it() }
 }
