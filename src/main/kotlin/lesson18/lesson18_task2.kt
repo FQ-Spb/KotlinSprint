@@ -1,9 +1,9 @@
 package org.example.lesson18
 
 abstract class Dice1(
-    val numberOfEdge: Int,
+    private val numberOfEdge: Int,
 ) {
-    fun throwDice(numberOfEdge: Int) = (1..numberOfEdge).random()
+    fun throwDice() = (1..numberOfEdge).random()
 }
 
 class TetrahedralDice(
@@ -24,6 +24,6 @@ fun main() {
     val dice3: Dice1 = OctahedralDice()
     val kitOfDices = arrayOf<Dice1>(dice, dice2, dice3)
 
-    kitOfDices.forEach { println(it.throwDice(it.numberOfEdge)) }
+    kitOfDices.forEach { println(it.throwDice()) }
 
 }
