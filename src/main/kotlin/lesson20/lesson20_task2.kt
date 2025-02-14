@@ -8,7 +8,7 @@ class Gamer(
 
 fun main() {
     val gamer1 = Gamer("Олег", currentHealth = 2)
-    val healingPotion = { it: Gamer ->
+    val healingPotion: (Gamer) -> Unit = { it: Gamer ->
         it.currentHealth = it.maxHealth
         println("Здоровье восстановлено текущее значение ${it.currentHealth}")
     }
