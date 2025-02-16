@@ -7,6 +7,7 @@ class Robot(
     private var phrase: String = listOfPhrases[(0..listOfPhrases.lastIndex).random()],
     private var modifier: (String) -> String = { it },
 ) {
+
     fun say() = println(modifier(phrase))
 
     fun setModifier(modifier: (String) -> String) {
