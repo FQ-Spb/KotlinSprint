@@ -1,13 +1,15 @@
 package org.example.lesson22
 
-data class MainScreenState(
-    val data: String = "",
-    val isLoading: Boolean = false,
-)
 
 class MainScreenViewModel(
     private val mainScreenState: MainScreenState = MainScreenState(),
 ) {
+
+    data class MainScreenState(
+        val data: String = "",
+        val isLoading: Boolean = false,
+    )
+
     fun loadData() {
         var currentState = mainScreenState.copy(data = "отсутствие данных")
         println(currentState)
